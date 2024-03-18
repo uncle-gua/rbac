@@ -8,7 +8,7 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/zpatrick/rbac"
+	"github.com/uncle-gua/rbac"
 )
 
 func main() {

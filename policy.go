@@ -12,9 +12,10 @@ type PermissionConstructor func(action, target string) Permission
 
 // DefaultPermissionConstructors returns a mapping of constructor names to PermissionConstructor functions
 // for each of the builtin PermissionConstructors:
-//   "glob":   NewGlobPermission
-//   "regex":  NewRegexPermission
-//   "string": NewStringPermission
+//
+//	"glob":   NewGlobPermission
+//	"regex":  NewRegexPermission
+//	"string": NewStringPermission
 func DefaultPermissionConstructors() map[string]PermissionConstructor {
 	return map[string]PermissionConstructor{
 		"glob":   NewGlobPermission,
@@ -60,9 +61,7 @@ func (p *PolicyTemplate) SetConstructor(name string, constructor PermissionConst
 
 // DeleteConstructor will remove the constructor mapping at the specified name if it exists.
 func (p *PolicyTemplate) DeleteConstructor(name string) {
-	if _, ok := p.constructors[name]; ok {
-		delete(p.constructors, name)
-	}
+	delete(p.constructors, name)
 }
 
 // Role converts the PolicyTemplate to a Role.
@@ -77,7 +76,7 @@ func (p *PolicyTemplate) Role(replacer *strings.Replacer) (*Role, error) {
 	for i, permissionTemplate := range p.PermissionTemplates {
 		constructor, ok := p.constructors[permissionTemplate.Constructor]
 		if !ok {
-			return nil, fmt.Errorf("No constructor set for '%s'", permissionTemplate.Constructor)
+			return nil, fmt.Errorf("no constructor set for '%s'", permissionTemplate.Constructor)
 		}
 
 		action := replacer.Replace(permissionTemplate.Action)

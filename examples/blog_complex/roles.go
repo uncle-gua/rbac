@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/zpatrick/rbac"
+	"github.com/uncle-gua/rbac"
 )
 
 // NewAdminRole returns a role with admin-level permissions

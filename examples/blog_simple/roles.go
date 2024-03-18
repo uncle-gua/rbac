@@ -1,6 +1,6 @@
 package main
 
-import "github.com/zpatrick/rbac"
+import "github.com/uncle-gua/rbac"
 
 // NewAdminRole returns a role with admin-level permissions
 func NewAdminRole() rbac.Role {

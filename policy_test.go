@@ -2,7 +2,7 @@ package rbac
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"os"
 	"strings"
 	"testing"
 
@@ -21,11 +21,11 @@ func TestPolicyTemplate(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if err := ioutil.WriteFile("admin.json", bytes, 0644); err != nil {
+	if err := os.WriteFile("admin.json", bytes, 0644); err != nil {
 		t.Fatal(err)
 	}
 
-	bytes, err = ioutil.ReadFile("admin.json")
+	bytes, err = os.ReadFile("admin.json")
 	if err != nil {
 		t.Fatal(err)
 	}
