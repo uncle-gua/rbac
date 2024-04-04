@@ -79,8 +79,12 @@ func (p *PolicyTemplate) Role(replacer *strings.Replacer) (*Role, error) {
 			return nil, fmt.Errorf("no constructor set for '%s'", permissionTemplate.Constructor)
 		}
 
-		action := replacer.Replace(permissionTemplate.Action)
-		target := replacer.Replace(permissionTemplate.Target)
+		action := permissionTemplate.Action
+		target := permissionTemplate.Target
+		if replacer != nil {
+			action = replacer.Replace(action)
+			target = replacer.Replace(target)
+		}
 		role.Permissions[i] = constructor(action, target)
 	}
 

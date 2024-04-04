@@ -10,7 +10,7 @@ import (
 )
 
 func TestPolicyTemplate(t *testing.T) {
-	t.Skip("TODO: read/write to/from a buffer")
+	// t.Skip("TODO: read/write to/from a buffer")
 
 	p := NewPolicyTemplate("Admin")
 	p.AddPermission("glob", "*", "grid:*:$userID:*")
@@ -21,11 +21,11 @@ func TestPolicyTemplate(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if err := os.WriteFile("admin.json", bytes, 0644); err != nil {
+	if err := os.WriteFile("./admin.json", bytes, 0644); err != nil {
 		t.Fatal(err)
 	}
 
-	bytes, err = os.ReadFile("admin.json")
+	bytes, err = os.ReadFile("./admin.json")
 	if err != nil {
 		t.Fatal(err)
 	}
