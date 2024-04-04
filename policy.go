@@ -65,8 +65,8 @@ func (p *PolicyTemplate) DeleteConstructor(name string) {
 
 // Role converts the PolicyTemplate to a Role.
 // Replacer can be used to replace variables within the Action and Target fields in the PermissionTemplates.
-// An error will be returned if a PermissionTemplate.Constructor does not have a corresponding PermissionConstructor.
-func (p *PolicyTemplate) Role(replacer *strings.Replacer) (*Role, error) {
+// Use GlobPermission as default if a PermissionTemplate.Constructor does not have a corresponding PermissionConstructor.
+func (p *PolicyTemplate) Role(replacer *strings.Replacer) *Role {
 	role := &Role{
 		RoleID:      p.RoleID,
 		Permissions: make(Permissions, len(p.PermissionTemplates)),
@@ -87,7 +87,7 @@ func (p *PolicyTemplate) Role(replacer *strings.Replacer) (*Role, error) {
 		role.Permissions[i] = constructor(action, target)
 	}
 
-	return role, nil
+	return role
 }
 
 // UnmarshalJSON allows a *PolicyTemplate to implement the json.Unmarshaler interface.

@@ -35,10 +35,7 @@ func TestPolicyTemplate(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	role, err := policy.Role(strings.NewReplacer("$userID", "u123"))
-	if err != nil {
-		t.Fatal(err)
-	}
+	role := policy.Role(strings.NewReplacer("$userID", "u123"))
 
 	can, err := role.Can("read:comment", "c123")
 	if err != nil {
