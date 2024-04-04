@@ -25,7 +25,7 @@ func DefaultPermissionConstructors() map[string]PermissionConstructor {
 
 // A PermissionTemplate holds information about a permission in templated format.
 type PermissionTemplate struct {
-	Constructor string `json:"constructor"`
+	Constructor string `json:"constructor,omitempty"`
 	Action      string `json:"action"`
 	Target      string `json:"target"`
 }
