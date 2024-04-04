@@ -2,7 +2,6 @@ package rbac
 
 import (
 	"encoding/json"
-	"fmt"
 	"strings"
 )
 
@@ -76,7 +75,7 @@ func (p *PolicyTemplate) Role(replacer *strings.Replacer) (*Role, error) {
 	for i, permissionTemplate := range p.PermissionTemplates {
 		constructor, ok := p.constructors[permissionTemplate.Constructor]
 		if !ok {
-			return nil, fmt.Errorf("no constructor set for '%s'", permissionTemplate.Constructor)
+			constructor = NewGlobPermission
 		}
 
 		action := permissionTemplate.Action
